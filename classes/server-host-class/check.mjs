@@ -1,0 +1,15 @@
+import { assert, load } from './runtime.mjs';
+const m = await load('server/index.ts');
+const input = { provider: 'own-hardware', roomPrefix: 'class-', allowedOrigins: 'https://example.org', region: 'any' };
+const settings = m.validateSettings(input);
+assert.equal(settings.adapter, 'node');
+assert.equal(m.originAllowed('https://example.org', settings), true);
+assert.equal(m.originAllowed('https://attacker.example', settings), false);
+assert.deepEqual(m.parseOrigins('https://EXAMPLE.org https://example.org'), ['https://example.org']);
+assert.throws(() => m.parseOrigins('http://public.example.org'));
+assert.throws(() => m.validateSettings({ ...input, provider: 'unknown' }));
+const seen = [];
+const entry = m.createEntry({ fetch: async (_request, env) => { seen.push(env); return new Response('ok'); } }, settings);
+const response = await entry.fetch(new Request('https://server.example', { headers: { origin: 'https://example.org' } }), {});
+assert.equal(await response.text(), 'ok');
+assert.equal(seen[0].WEB_ORIGINS, 'https://example.org');

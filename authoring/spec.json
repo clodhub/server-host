@@ -1,6 +1,6 @@
 {
   "name": "server-host",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "title": "Server host",
   "description": "Server entry point for a server target: one worker module that runs on Cloudflare Workers or, through a Node http adapter, on the owner's own hardware, with origin policy, region placement and deployment files rendered from typed settings.",
   "facilities": [
@@ -106,5 +106,150 @@
     "updates": "Patch updates replace the owned files; render the deployment files again after each update. The Node adapter's data format is described in migration.json (`ae/object-storage` 1.0.0). `accountReference` is a non-secret reference name with default `none` (a template cannot render a secret setting) and `allowedOrigins` has the default `http://localhost:5173`. `ServerSettings` is the lower layer that `createServerHost` takes; `serverSettings()` builds it from the rendered `hostSettings`. The Directory class comes from room-directory. Removal deletes the owned sources; on Cloudflare the Worker and its objects remain in the account until the owner deletes them, and on own hardware the data folder remains until the owner deletes it (export it first)."
   },
   "agentInstructions": "Select `ourapps-ae/server-host` when the recipe's server target is chosen; pick the profile (`free` maps to cloudflare-free, `paid` to cloudflare-paid, own hardware to own-hardware) from the scale answer using suitability.json. Connect `room-session` and `room-directory` to the room service and directory components. Never put a Cloudflare token or account id in a setting: supply the name of the secret as `accountReference`. The recipe's server code imports `host-settings.ts` from the installed `components/server-host/server/` folder; do not write that file.",
-  "developerInstructions": "Cloudflare: create an account, create an API token for Workers, store the account id and token in the release pipeline's secret store under the reference name, and give that name as `accountReference`; the pipeline exports `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` for `deploy.sh`. Own hardware: install Node 26 or later, copy the rendered `start.ts`, set `PORT`, `HOST` and `DATA_DIRECTORY`, put a TLS-terminating proxy in front, back up the data folder (or run the ndjson export on a schedule). To check: run the commands below; for a live check call `GET /health` on the deployed address."
+  "developerInstructions": "Cloudflare: create an account, create an API token for Workers, store the account id and token in the release pipeline's secret store under the reference name, and give that name as `accountReference`; the pipeline exports `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` for `deploy.sh`. Own hardware: install Node 26 or later, copy the rendered `start.ts`, set `PORT`, `HOST` and `DATA_DIRECTORY`, put a TLS-terminating proxy in front, back up the data folder (or run the ndjson export on a schedule). To check: run the commands below; for a live check call `GET /health` on the deployed address.",
+  "classes": [
+    {
+      "reference": {
+        "name": "ourapps-ae/server-host-class",
+        "version": "1.0.0",
+        "digest": "a54a226c1c2e3affbe98ba818badbe07a33eedada46b0386eaddbb6804312375"
+      },
+      "descriptor": {
+        "format": 1,
+        "name": "ourapps-ae/server-host-class",
+        "version": "1.0.0",
+        "provides": [
+          {
+            "type": "ae/server-host",
+            "version": "1.0.0",
+            "path": "classes/server-host-class/server-host.json",
+            "modules": {
+              "server": [
+                "server/index.ts"
+              ]
+            }
+          }
+        ],
+        "requires": [
+          {
+            "type": "ae/room-session",
+            "version": "1.0.0"
+          },
+          {
+            "type": "ae/room-directory",
+            "version": "1.0.0"
+          }
+        ],
+        "settings": {
+          "type": "object",
+          "properties": {
+            "accountReference": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,63}$"
+            },
+            "allowedOrigins": {
+              "type": "string",
+              "pattern": "^https?://[A-Za-z0-9.-]+(:[0-9]{1,5})?(/[A-Za-z0-9_/-]*)?$"
+            },
+            "provider": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,63}$"
+            },
+            "roomPrefix": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,63}$"
+            }
+          },
+          "required": [
+            "allowedOrigins",
+            "provider",
+            "roomPrefix"
+          ],
+          "additionalProperties": false
+        },
+        "inventory": [
+          {
+            "path": "classes/server-host-class/check.mjs",
+            "digest": "ac2055aab56690ad65a57ea4af0b928fa6300c2f425dbe9cc94e473da533dc74"
+          },
+          {
+            "path": "classes/server-host-class/runtime.mjs",
+            "digest": "7440f3891614c423f74668cb5a2445fea58bbfa4d7c740c8e8a855d1d9300d43"
+          },
+          {
+            "path": "classes/server-host-class/server-host.json",
+            "digest": "9f72a5bde1a55d5deb7f2c62c72a733e56b2f5b40c062b1e884de2b4a8d35ecf"
+          }
+        ],
+        "verification": [
+          {
+            "id": "shared",
+            "root": "package",
+            "argv": [
+              "node",
+              "classes/server-host-class/check.mjs"
+            ],
+            "cwd": ".",
+            "prepare": [],
+            "tools": {
+              "node": "26.5"
+            },
+            "fixtures": [
+              "classes/server-host-class/check.mjs"
+            ],
+            "locks": [],
+            "network": false,
+            "timeoutSeconds": 60,
+            "expectedExit": 0,
+            "scope": "required-local",
+            "requirements": []
+          }
+        ]
+      }
+    }
+  ],
+  "implements": [
+    {
+      "name": "ourapps-ae/server-host-class",
+      "version": "1.0.0",
+      "digest": "a54a226c1c2e3affbe98ba818badbe07a33eedada46b0386eaddbb6804312375"
+    }
+  ],
+  "upstream": [],
+  "compatibility": {
+    "runtimes": {
+      "node": ">=26.5.0 <27.0.0"
+    },
+    "frameworks": {},
+    "dependencies": [],
+    "styles": {
+      "scope": "none",
+      "namespaces": [],
+      "conflicts": []
+    }
+  },
+  "maintenance": {
+    "owners": [
+      "Level N Ltd"
+    ],
+    "contact": "https://github.com/ourapps-ae/server-host/issues",
+    "repository": "https://github.com/ourapps-ae/server-host",
+    "updates": {
+      "source": "https://github.com/ourapps-ae/server-host/releases",
+      "strategy": "manual"
+    }
+  },
+  "supportedPlatforms": [
+    "server"
+  ],
+  "licence": "Apache-2.0",
+  "licenceFile": "LICENCE",
+  "noticeFile": "NOTICE",
+  "templates": [
+    "implementation/server/host-settings.ts",
+    "implementation/server/wrangler.jsonc"
+  ],
+  "modules": {
+    "server": "server/index.ts"
+  }
 }
