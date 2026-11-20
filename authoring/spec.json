@@ -1,6 +1,6 @@
 {
   "name": "server-host",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "title": "Server host",
   "description": "Server entry point for a server target: one worker module that runs on Cloudflare Workers or, through a Node http adapter, on the owner's own hardware, with origin policy, region placement and deployment files rendered from typed settings.",
   "facilities": [
@@ -111,13 +111,17 @@
     {
       "reference": {
         "name": "ourapps-ae/server-host-class",
-        "version": "1.0.0",
-        "digest": "a54a226c1c2e3affbe98ba818badbe07a33eedada46b0386eaddbb6804312375"
+        "version": "1.1.0",
+        "digest": "1c9f5cea090f096c7372503deabd37f597df41a82e72e8b5a27fe5615fae7573"
       },
       "descriptor": {
-        "format": 1,
+        "format": 2,
         "name": "ourapps-ae/server-host-class",
-        "version": "1.0.0",
+        "version": "1.1.0",
+        "title": "Server host",
+        "summary": "Runs the application's server on Cloudflare Workers or on Node on your own hardware",
+        "category": "devices-and-hosts/server",
+        "presentation": "none",
         "provides": [
           {
             "type": "ae/server-host",
@@ -211,8 +215,8 @@
   "implements": [
     {
       "name": "ourapps-ae/server-host-class",
-      "version": "1.0.0",
-      "digest": "a54a226c1c2e3affbe98ba818badbe07a33eedada46b0386eaddbb6804312375"
+      "version": "1.1.0",
+      "digest": "1c9f5cea090f096c7372503deabd37f597df41a82e72e8b5a27fe5615fae7573"
     }
   ],
   "upstream": [],
@@ -279,5 +283,11 @@
         "manual": "Without the package manager, install Node 26 from nodejs.org (the installer, or the zip or tar archive with its folder put first on PATH); on Linux also from the NodeSource repository."
       }
     ]
-  }
+  },
+  "release": {
+    "channel": "features",
+    "fixes": []
+  },
+  "images": [],
+  "vulnerabilityWaivers": []
 }
