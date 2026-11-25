@@ -7,12 +7,12 @@
   "focus": "component",
   "definitions": [
     {
-      "id": "ourapps-ae.server-host",
+      "id": "clodhub.server-host",
       "name": "Server host",
       "kind": "component",
       "status": "example",
-      "package": "ourapps-ae/server-host",
-      "version": "0.11.0",
+      "package": "clodhub/server-host",
+      "version": "0.12.0",
       "ports": [
         {
           "id": "room-session",
@@ -125,7 +125,7 @@
     {
       "id": "component",
       "name": "Server host",
-      "definition": "ourapps-ae.server-host",
+      "definition": "clodhub.server-host",
       "configuration": {
         "provider": "example",
         "roomPrefix": "example"

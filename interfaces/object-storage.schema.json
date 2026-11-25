@@ -105,5 +105,5 @@
       "$ref": "#/$defs/objectLine"
     }
   ],
-  "x-ourapps-modules": {}
+  "x-clodhub-modules": {}
 }

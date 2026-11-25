@@ -1,6 +1,6 @@
 {
   "name": "server-host",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "title": "Server host",
   "description": "Server entry point for a server target: one worker module that runs on Cloudflare Workers or, through a Node http adapter, on the owner's own hardware, with origin policy, region placement and deployment files rendered from typed settings.",
   "facilities": [
@@ -73,7 +73,7 @@
   ],
   "dependencies": [],
   "tools": {
-    "node": "26.5.0"
+    "node": "26.5"
   },
   "platforms": [
     "server"
@@ -105,18 +105,18 @@
     "scenarios": "A small table uses cloudflare-free and stays within the free request allowance; a larger or always-on service uses cloudflare-paid; a club that prefers its own machine uses own-hardware and keeps data in a folder it can back up. A server pinned to `eu` keeps its objects in the European Union jurisdiction on Cloudflare.",
     "updates": "Patch updates replace the owned files; render the deployment files again after each update. The Node adapter's data format is described in migration.json (`ae/object-storage` 1.0.0). `accountReference` is a non-secret reference name with default `none` (a template cannot render a secret setting) and `allowedOrigins` has the default `http://localhost:5173`. `ServerSettings` is the lower layer that `createServerHost` takes; `serverSettings()` builds it from the rendered `hostSettings`. The Directory class comes from room-directory. Removal deletes the owned sources; on Cloudflare the Worker and its objects remain in the account until the owner deletes them, and on own hardware the data folder remains until the owner deletes it (export it first)."
   },
-  "agentInstructions": "Select `ourapps-ae/server-host` when the recipe's server target is chosen; pick the profile (`free` maps to cloudflare-free, `paid` to cloudflare-paid, own hardware to own-hardware) from the scale answer using suitability.json. Connect `room-session` and `room-directory` to the room service and directory components. Never put a Cloudflare token or account id in a setting: supply the name of the secret as `accountReference`. The recipe's server code imports `host-settings.ts` from the installed `components/server-host/server/` folder; do not write that file.",
+  "agentInstructions": "Select `clodhub/server-host` when the recipe's server target is chosen; pick the profile (`free` maps to cloudflare-free, `paid` to cloudflare-paid, own hardware to own-hardware) from the scale answer using suitability.json. Connect `room-session` and `room-directory` to the room service and directory components. Never put a Cloudflare token or account id in a setting: supply the name of the secret as `accountReference`. The recipe's server code imports `host-settings.ts` from the installed `components/server-host/server/` folder; do not write that file.",
   "developerInstructions": "Cloudflare: create an account, create an API token for Workers, store the account id and token in the release pipeline's secret store under the reference name, and give that name as `accountReference`; the pipeline exports `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` for `deploy.sh`. Own hardware: install Node 26 or later, copy the rendered `start.ts`, set `PORT`, `HOST` and `DATA_DIRECTORY`, put a TLS-terminating proxy in front, back up the data folder (or run the ndjson export on a schedule). To check: run the commands below; for a live check call `GET /health` on the deployed address.",
   "classes": [
     {
       "reference": {
-        "name": "ourapps-ae/server-host-class",
+        "name": "clodhub/server-host-class",
         "version": "1.1.0",
-        "digest": "1c9f5cea090f096c7372503deabd37f597df41a82e72e8b5a27fe5615fae7573"
+        "digest": "08d7873867ce29f451c871ca6883eea8dec456a7a302a320495246c2cd1bcab0"
       },
       "descriptor": {
         "format": 2,
-        "name": "ourapps-ae/server-host-class",
+        "name": "clodhub/server-host-class",
         "version": "1.1.0",
         "title": "Server host",
         "summary": "Runs the application's server on Cloudflare Workers or on Node on your own hardware",
@@ -182,7 +182,7 @@
           },
           {
             "path": "classes/server-host-class/server-host.json",
-            "digest": "9f72a5bde1a55d5deb7f2c62c72a733e56b2f5b40c062b1e884de2b4a8d35ecf"
+            "digest": "a419c730f068b8d32d54c26f41d26c454bf800e0da9880a5859848709ff0dc07"
           }
         ],
         "verification": [
@@ -214,9 +214,9 @@
   ],
   "implements": [
     {
-      "name": "ourapps-ae/server-host-class",
+      "name": "clodhub/server-host-class",
       "version": "1.1.0",
-      "digest": "1c9f5cea090f096c7372503deabd37f597df41a82e72e8b5a27fe5615fae7573"
+      "digest": "08d7873867ce29f451c871ca6883eea8dec456a7a302a320495246c2cd1bcab0"
     }
   ],
   "upstream": [],
@@ -236,10 +236,10 @@
     "owners": [
       "Level N Ltd"
     ],
-    "contact": "https://github.com/ourapps-ae/server-host/issues",
-    "repository": "https://github.com/ourapps-ae/server-host",
+    "contact": "https://github.com/clodhub/server-host/issues",
+    "repository": "https://github.com/clodhub/server-host",
     "updates": {
-      "source": "https://github.com/ourapps-ae/server-host/releases",
+      "source": "https://github.com/clodhub/server-host/releases",
       "strategy": "manual"
     }
   },

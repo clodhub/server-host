@@ -1,9 +1,9 @@
 # Server host instructions
 
 ## For the agent
-Select `ourapps-ae/server-host` when the recipe's server target is chosen; pick the profile (`free` maps to cloudflare-free, `paid` to cloudflare-paid, own hardware to own-hardware) from the scale answer using suitability.json. Connect `room-session` and `room-directory` to the room service and directory components. Never put a Cloudflare token or account id in a setting: supply the name of the secret as `accountReference`. The recipe's server code imports `host-settings.ts` from the installed `components/server-host/server/` folder; do not write that file.
+Select `clodhub/server-host` when the recipe's server target is chosen; pick the profile (`free` maps to cloudflare-free, `paid` to cloudflare-paid, own hardware to own-hardware) from the scale answer using suitability.json. Connect `room-session` and `room-directory` to the room service and directory components. Never put a Cloudflare token or account id in a setting: supply the name of the secret as `accountReference`. The recipe's server code imports `host-settings.ts` from the installed `components/server-host/server/` folder; do not write that file.
 
-- Select package `ourapps-ae/server-host` version `0.11.0`.
+- Select package `clodhub/server-host` version `0.12.0`.
 - Settings to configure:
   - `provider` (string, slug; required)
   - `accountReference` (string, slug; optional; default `none`; the name of the secret, never its value)
@@ -23,4 +23,4 @@ Cloudflare: create an account, create an API token for Workers, store the accoun
 From the component directory:
 
 - `node --test tests/web.test.ts` (web, required-local; tools: node 26.5)
-- `python3 -m aepm review <digest> --store STORE --policy POLICY --trusted --allow-network` checks an archive fetched with `python3 -m aepm fetch ourapps-ae/server-host@VERSION --store STORE --from https://ourapps.app` and runs its suites.
+- `python3 -m aepm review <digest> --store STORE --policy POLICY --trusted --allow-network` checks an archive fetched with `python3 -m aepm fetch clodhub/server-host@VERSION --store STORE --from https://clodhub.com` and runs its suites.
