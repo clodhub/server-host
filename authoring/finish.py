@@ -1,4 +1,4 @@
-"""Run after tools/scaffold_component.py: marks host-settings.ts and wrangler.jsonc as aepm template artefacts (the scaffolder has no template option) and keeps the committed manifest layout."""
+"""Run after tools/scaffold_component.py: marks host-settings.ts and wrangler.jsonc as clod template artefacts (the scaffolder has no template option) and keeps the committed manifest layout."""
 import json
 from pathlib import Path
 

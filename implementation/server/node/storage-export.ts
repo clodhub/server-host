@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-// Portable export and import of the object files the Node adapter keeps, as ndjson (ae/object-storage 1.0.0).
+// Portable export and import of the object files the Node adapter keeps, as ndjson (com.clodhub/object-storage 1.0.0).
 
 export type ObjectRecord = { namespace: string; name: string; storage: Record<string, unknown>; alarm: number | null };
 export type Check = { counts: boolean; checksums: boolean; sample: string[] };
@@ -34,7 +34,7 @@ export function readStorage(dataDirectory: string): ObjectRecord[] {
 
 export function exportStorage(records: ObjectRecord[]): string {
   const sorted = [...records].sort((a, b) => (a.namespace + "/" + a.name < b.namespace + "/" + b.name ? -1 : 1));
-  const lines: unknown[] = [{ type: "header", format: "ae/object-storage", version: "1.0.0", objects: sorted.length }];
+  const lines: unknown[] = [{ type: "header", format: "com.clodhub/object-storage", version: "1.0.0", objects: sorted.length }];
   for (const record of sorted) lines.push({ type: "object", ...record, sha256: digest(record) });
   return lines.map((line) => JSON.stringify(line)).join("\n") + "\n";
 }
@@ -42,7 +42,7 @@ export function exportStorage(records: ObjectRecord[]): string {
 export function importStorage(text: string): ObjectRecord[] {
   const lines = text.split("\n").filter((line) => line.length > 0).map((line) => JSON.parse(line));
   const header = lines[0];
-  if (!header || header.type !== "header" || header.format !== "ae/object-storage" || header.version !== "1.0.0") throw new Error("not an ae/object-storage 1.0.0 export");
+  if (!header || header.type !== "header" || header.format !== "com.clodhub/object-storage" || header.version !== "1.0.0") throw new Error("not a com.clodhub/object-storage 1.0.0 export");
   const records: ObjectRecord[] = [];
   const seen = new Set<string>();
   for (const line of lines.slice(1)) {

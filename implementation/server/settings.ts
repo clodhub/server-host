@@ -24,7 +24,7 @@ export interface ResolvedServerSettings {
   region: string;
 }
 
-// The values aepm renders into host-settings.ts from this component's collected settings (every field is always present).
+// The values clod renders into host-settings.ts from this component's collected settings (every field is always present).
 export interface HostSettings {
   provider: Provider;
   // The name of the account secret, or NO_ACCOUNT when none is used (own hardware).
@@ -48,7 +48,7 @@ export const JURISDICTIONS: readonly string[] = ["eu", "us", "fedramp"];
 export const LOCATION_HINTS: readonly string[] = ["wnam", "enam", "sam", "weur", "eeur", "apac", "apac-ne", "apac-se", "oc", "afr", "me"];
 
 const SLUG = /^[a-z][a-z0-9-]{0,63}$/;
-// The secret reference grammar aepm accepts for configuration values.
+// The secret reference grammar clod accepts for configuration values.
 const SECRET_REFERENCE = /^[A-Za-z][A-Za-z0-9_./-]{0,127}$/;
 const ORIGIN = /^(https?):\/\/([A-Za-z0-9.-]+)(:[0-9]{1,5})?$/;
 const LOOPBACK = new Set(["localhost", "127.0.0.1"]);

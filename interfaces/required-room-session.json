@@ -1,7 +1,7 @@
 {
   "openrpc": "1.3.2",
   "info": {
-    "title": "ae/room-session",
+    "title": "com.clodhub/room-session",
     "version": "1.0.0",
     "description": "Persistent private game rooms on Cloudflare Durable Objects and the clients that reach them. Server: createRoomClass and createWorker (server/index.ts, server/worker.ts; constants POLL_MS 25000, MAX_DISPLAYS 6, DISPLAY_IDLE_MS 3600000, LIVE_MS 75000). Clients: Live (web/live.ts), LiveConnection (Swift), RoomTransport (Kotlin). The HTTP routes are in interfaces/room-session-http.json (OpenAPI 3.1.1) and the live messages in interfaces/room-session-live.json (AsyncAPI 3.1.0). The directory object is not provided here: rooms call the DIRECTORY namespace, which the application binds to room-directory's createDirectoryClass.",
     "license": {
@@ -595,7 +595,7 @@
       },
       "GameAdapter": {
         "type": "object",
-        "description": "The ae/game-adapter interface (GameAdapter<S, A, V, O> in server/adapter.ts) the room calls; provided by turn-engine.",
+        "description": "The com.clodhub/game-adapter interface (GameAdapter<S, A, V, O> in server/adapter.ts) the room calls; provided by turn-engine.",
         "required": [
           "create",
           "restore",
@@ -659,7 +659,7 @@
       },
       "IdentityService": {
         "type": "object",
-        "description": "The ae/guest-identity calls a room makes (IdentityService in server/adapter.ts); createIdentityApi(settings) of guest-identity satisfies it.",
+        "description": "The com.clodhub/guest-identity calls a room makes (IdentityService in server/adapter.ts); createIdentityApi(settings) of guest-identity satisfies it.",
         "required": [
           "claim",
           "authenticate",

@@ -370,13 +370,13 @@ test("tampered, miscounted, duplicate or foreign exports are rejected", () => {
   assert.throws(() => importStorage(text.replace('"count":1', '"count":2')), /checksum mismatch for ROOM\/a/);
   assert.throws(() => importStorage(text.replace('"objects":1', '"objects":2')), /object count mismatch/);
   assert.throws(() => importStorage(text + text.split("\n")[1] + "\n"), /duplicate object/);
-  assert.throws(() => importStorage("{}\n"), /not an ae\/object-storage/);
+  assert.throws(() => importStorage("{}\n"), /not a com\.clodhub\/object-storage/);
   assert.throws(() => importStorage(exportStorage([{ ...record, namespace: "../x" }])), /invalid namespace/);
   assert.equal(verifyStorage([record], []).counts, false);
   assert.equal(verifyStorage([record], [{ ...record, storage: { count: 9 } }]).checksums, false);
 });
 
-// ---- host-settings.ts (rendered by aepm at install) ----
+// ---- host-settings.ts (rendered by clod at install) ----
 
 const settingsFixture = JSON.parse(readFileSync(new URL("fixtures/host-settings-collect.json", import.meta.url), "utf8"));
 const declarations = settingsFixture.collect as Declaration[];
@@ -440,7 +440,7 @@ test("a Cloudflare provider without an account name is refused when the host sta
   assert.deepEqual(fromHostSettings({ ...hostSettings, accountReference: "acme" }).accountReference, "acme");
 });
 
-test("the template rules refuse what aepm refuses", () => {
+test("the template rules refuse what clod refuses", () => {
   const base = { provider: "own-hardware", roomPrefix: "demo-" };
   assert.throws(() => configuration(declarations, { roomPrefix: "demo-" }), /required-setting provider/);
   assert.throws(() => configuration(declarations, { ...base, roomPrefix: "Demo" }), /setting-grammar roomPrefix/);

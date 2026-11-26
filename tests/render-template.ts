@@ -1,4 +1,4 @@
-// A pure copy of aepm's template rules (aepm/application.py: configuration, substitute) for the settings the tests render.
+// A pure copy of clod's template rules (clod/application.py: configuration, substitute) for the settings the tests render.
 
 export interface Declaration { id: string; type: "string" | "boolean" | "integer"; grammar: string; required: boolean; secret: boolean; default?: string | boolean | number }
 

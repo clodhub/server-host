@@ -1,9 +1,9 @@
 {
   "openrpc": "1.3.2",
   "info": {
-    "title": "ae/room-directory",
+    "title": "com.clodhub/room-directory",
     "version": "1.0.0",
-    "description": "One summary of every room for the home screens. Pure list operations (server/directory-core.ts; the same rules in Swift as static functions of enum RoomDirectory and in Kotlin as top-level functions of package ae.directory), the Directory Durable Object class (server/directory.ts, platform base class injected), the ndjson export and import of its stored list (server/directory-migration.ts) and the web watcher (web/directory-client.ts). Methods are tagged with the languages that provide them. The object's requests are in interfaces/room-directory-http.json (OpenAPI 3.1.1) and its live list in interfaces/room-directory-live.json (AsyncAPI 3.1.0).",
+    "description": "One summary of every room for the home screens. Pure list operations (server/directory-core.ts; the same rules in Swift as static functions of enum RoomDirectory and in Kotlin as top-level functions of package com.clodhub.directory), the Directory Durable Object class (server/directory.ts, platform base class injected), the ndjson export and import of its stored list (server/directory-migration.ts) and the web watcher (web/directory-client.ts). Methods are tagged with the languages that provide them. The object's requests are in interfaces/room-directory-http.json (OpenAPI 3.1.1) and its live list in interfaces/room-directory-live.json (AsyncAPI 3.1.0).",
     "license": {
       "name": "Apache-2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0"
@@ -523,7 +523,7 @@
     },
     {
       "name": "exportAll",
-      "description": "ndjson (ae/room-directory-state 1.0.0): a header line, then one room line per room by id with a sha256 over its canonical JSON.",
+      "description": "ndjson (com.clodhub/room-directory-state 1.0.0): a header line, then one room line per room by id with a sha256 over its canonical JSON.",
       "params": [
         {
           "name": "rooms",
@@ -839,7 +839,7 @@
     "errors": {
       "ImportError": {
         "code": 1,
-        "message": "Not a valid ae/room-directory-state 1.0.0 export",
+        "message": "Not a valid com.clodhub/room-directory-state 1.0.0 export",
         "data": {
           "type": "string",
           "description": "Wrong header, unknown line type, checksum mismatch, duplicate room, malformed entry, room count mismatch, or a JSON parse error."

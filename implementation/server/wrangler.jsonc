@@ -1,4 +1,4 @@
-// Rendered by aepm at install from the server-host settings. Run Wrangler from the application's server folder with
+// Rendered by clod at install from the server-host settings. Run Wrangler from the application's server folder with
 // `--config ../components/server-host/server/wrangler.jsonc`; the worker module is server/src/index.ts.
 // The Cloudflare account comes from CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN in the environment, never from this file.
 {

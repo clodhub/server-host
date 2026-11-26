@@ -1,6 +1,6 @@
 import { fromHostSettings, type HostSettings, type ServerSettings } from "./settings.ts";
 
-// Rendered by aepm at install from the server-host settings; nothing else writes this file.
+// Rendered by clod at install from the server-host settings; nothing else writes this file.
 export const hostSettings: HostSettings = {
   provider: "cloudflare-free",
   accountReference: "ourpoker-cloudflare-account",

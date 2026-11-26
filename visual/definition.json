@@ -1,17 +1,17 @@
 {
-  "id": "clodhub.server-host",
+  "id": "com.clodhub.server-host",
   "name": "Server host",
   "kind": "component",
   "status": "example",
-  "package": "clodhub/server-host",
-  "version": "0.12.0",
+  "package": "pkg:clod/com.clodhub/server-host",
+  "version": "0.13.0",
   "ports": [
     {
       "id": "room-session",
       "name": "Room session",
       "direction": "input",
       "kind": "interface",
-      "type": "ae/room-session",
+      "type": "com.clodhub/room-session",
       "version": "1.0.0",
       "required": true,
       "cardinality": "one"
@@ -21,7 +21,7 @@
       "name": "Room directory",
       "direction": "input",
       "kind": "interface",
-      "type": "ae/room-directory",
+      "type": "com.clodhub/room-directory",
       "version": "1.0.0",
       "required": true,
       "cardinality": "one"
@@ -31,7 +31,7 @@
       "name": "Server host",
       "direction": "output",
       "kind": "interface",
-      "type": "ae/server-host",
+      "type": "com.clodhub/server-host",
       "version": "1.0.0"
     }
   ],

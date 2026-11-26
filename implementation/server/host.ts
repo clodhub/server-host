@@ -24,7 +24,7 @@ export interface ServerHost {
   deployFiles(options?: DeployOptions): Record<string, string>;
 }
 
-// The host for the settings aepm rendered into host-settings.ts (`import { hostSettings } from "./host-settings.ts"`).
+// The host for the settings clod rendered into host-settings.ts (`import { hostSettings } from "./host-settings.ts"`).
 export const createServerHostFromHostSettings = (raw: HostSettings): ServerHost => createServerHost(fromHostSettings(raw));
 
 export function createServerHost(settings: ServerSettings): ServerHost {

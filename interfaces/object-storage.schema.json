@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "ae/object-storage",
+  "title": "com.clodhub/object-storage",
   "x-version": "1.0.0",
   "description": "What the Node adapter keeps for each named object (one file per object under <dataDirectory>/<binding>/), and the ndjson lines used to export and import it. Values are opaque to this component; the application's object classes read and write them. On Cloudflare the objects keep their own storage and this format is not used.",
   "$defs": {
@@ -17,7 +17,7 @@
           "const": "header"
         },
         "format": {
-          "const": "ae/object-storage"
+          "const": "com.clodhub/object-storage"
         },
         "version": {
           "const": "1.0.0"
